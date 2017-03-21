@@ -1,0 +1,4 @@
+.foo.bar .baz.bang, .bip.qux {
+  $selector: &;  // (".foo.bar" ".baz.bang"), ".bip.qux")
+  content: $selector;
+}
