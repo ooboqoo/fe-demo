@@ -9,7 +9,7 @@
     "start": "live-server --port=3333",
     "ts": "start npm start ts && ts -w ts",
     "js": "start npm start js",
-    "scss": "start npm start scss && node-sass -w scss"
+    "scss": "node-sass -wro scss --output-style expanded scss"
   },
   "repository": {
     "type": "git",
