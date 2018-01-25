@@ -69,7 +69,11 @@ function hotPotato(nameList, num) {
   return queue.dequeue();
 }
 
-let names = ['John', 'Jack', 'Camila', 'Carl'];
+let names = ['John', 'Jack', 'Camila', 'Carl'],
     winner = hotPotato(names, 7);
 console.log('胜利者 ', winner);
 
+module.exports = {
+  Stack,
+  PriorityQueue,
+};

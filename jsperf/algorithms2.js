@@ -20,13 +20,13 @@ let makeChange = (function () {
       }
     }
     return cache[amount] = min;
-  }
+  };
 })();
 
 // 最少硬币找零问题 - 贪心算法
 function minCoinChange(amount, coins = [1, 3, 4]) {
   let change = [], total = 0;
-  for (i = coins.length; i--;) {
+  for (let i = coins.length; i--;) {
     while (total + coins[i] <= amount) {
       change.push(coins[i]);
       total += coins[i];

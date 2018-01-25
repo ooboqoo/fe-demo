@@ -5,6 +5,7 @@
         "sourceMap": true,
         "declaration": true,
         "removeComments": true,
-        "noImplicitAny": false
+        "noImplicitAny": false,
+        "experimentalDecorators": true,
     }
 }

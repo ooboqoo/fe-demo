@@ -14,7 +14,16 @@ function getRandomArray(amount = 1000) {
   return array;
 }
 
+// 生成连续数组
+function getSerialArray(amount = 1000) {
+  let array = new Array(amount),
+      i = amount;
+  while (i--) { array[i] = i; }
+  return array;
+}
+
 module.exports = {
   runTest,
   getRandomArray,
-}
+  getSerialArray,
+};

@@ -89,7 +89,7 @@ class BinarySearchTree {
     function searchNode(node, key) {
       if (node === null) { return false; }
       if (key < node.key) { return searchNode(node.left, key); }
-      else if (key > node.key) { return searchNode(node.right, key) }
+      else if (key > node.key) { return searchNode(node.right, key); }
       else { return true; }
     }
   }
@@ -111,7 +111,7 @@ class BinarySearchTree {
       // key === node.key && 节点有两个子节点
       let aux = findMinNode(node.right);
       node.key = aux.key;
-      node.right = removeNode(node.right, aux.key);
+      node.right = deleteNode(node.right, aux.key);
       return node;
     }
 
@@ -145,9 +145,9 @@ function runTest() {
   tree.delete(14);
   tree.inOrderTraverse(key => result.push(key));
   console.log('delete 14 & inOrderTraverse', result); result = [];
-  tree.delete(1)
+  tree.delete(1);
   tree.inOrderTraverse(key => result.push(key));
   console.log('delete 1 & inOrderTraverse', result); result = [];
 }
 
-// runTest();
+if (require.main === module) { runTest(); }

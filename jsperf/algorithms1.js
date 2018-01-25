@@ -1,34 +1,17 @@
-const { runTest } = require('./utils');
+const { runTest, getRandomArray } = require('./utils');
 const { BinarySearchTree } = require('./tree');
 
 // 测试项列表
-runTest('生成随机数组', getRandomArray);                               //    14 ms
-runTest('冒泡排序', function() { bubbleSort(getRandomArray(100)); });  // 23442 ms -- 这是 1K 次的数据，参数 100 是后面改的
-runTest('选择排序', function() { selectionSort(getRandomArray()); });  //  1689 ms
-runTest('插入排序', function() { insertionSort(getRandomArray()); });  //   286 ms
-runTest('归并排序', function() { mergeSort(getRandomArray()); });      //   444 ms
-runTest('快速排序', function() { quickSort(getRandomArray()); });      //   364 ms
-runTest('二叉树排序', function() { BSTSort(getRandomArray()); });      //   234 ms
-runTest('.sort()', function() { getRandomArray().sort(); });          //   238 ms
-runTest('顺序搜索', function() { sequentialSearch(getRandomArray(), 500) })  //  14.281 ms, 15次 以下用顺序搜索直接搜
-runTest('二分搜索', function() { binarySearch(getRandomArray(), 500) })      // 239.881 ms，15次 以上先排序后二分搜索
-
-// 生成随机数组
-function getRandomArray(amount = 1000) {
-  let array = new Array(amount);
-  for (let i = amount; i--;) {
-    array[i] = Math.floor(Math.random() * 1000);
-  }
-  return array;
-}
-
-// 生成连续数组
-function getSerialArray(amount = 1000) {
-  let array = new Array(amount),
-      i = amount;
-  while (i--) { array[i] = i; }
-  return array;
-}
+runTest('生成随机数组', getRandomArray);                     //    14 ms
+runTest('冒泡排序', () => bubbleSort(getRandomArray(100)));  // 23442 ms -- 这是 1K 次的数据，参数 100 是后面改的
+runTest('选择排序', () => selectionSort(getRandomArray()));  //  1689 ms
+runTest('插入排序', () => insertionSort(getRandomArray()));  //   286 ms
+runTest('归并排序', () => mergeSort(getRandomArray()));      //   444 ms
+runTest('快速排序', () => quickSort(getRandomArray()));      //   364 ms
+runTest('二叉树排序', () => BSTSort(getRandomArray()));      //   234 ms
+runTest('.sort()', () => getRandomArray().sort());          //   238 ms
+runTest('顺序搜索', () => sequentialSearch(getRandomArray(), 500));  //  14.281 ms, 15次 以下用顺序搜索直接搜
+runTest('二分搜索', () => binarySearch(getRandomArray(), 500));      // 239.881 ms，15次 以上先排序后二分搜索
 
 // 冒泡排序
 function bubbleSort(arr) {
@@ -73,11 +56,11 @@ function mergeSort(arr) {
 
   function mergeSortRec(arr) {
     const length = arr.length;
-    if (length === 1) { return arr }
+    if (length === 1) { return arr; }
     const mid = Math.floor(length / 2),
           left = arr.slice(0, mid),
           right = arr.slice(mid, length);
-    return merge(mergeSortRec(left), mergeSortRec(right))
+    return merge(mergeSortRec(left), mergeSortRec(right));
   }
 
   function merge(left, right) {
