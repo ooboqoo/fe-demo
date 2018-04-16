@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HTML5 API</title>
+</head>
+<body>
+  <script>
+    var SHAK_SPEED_THRESHOLD = 150;  // 摇动阈值
+    var lastTime = 0;  // 上次变化的时间
+    var x = y = z = lastX = lastY = lastZ = 0;  // 位置变量初始化
+    function motionHandler(evt) {
+      var acceleration = evt.accelerationIncludingGravity;
+      var curTime = Date.now();
+      var diffTime, speed;
+      if ((diffTime = curTime - lastTime) > 120) {
+        lastTime = curTime;
+        x = acceleration.x; y = acceleration.y; z = acceleration.z;
+        speed = Math.abs(x + y + z - lastX - lastY - lastZ) / diffTime * 1000;
+        if (speed > SHAK_SPEED_THRESHOLD) {
+          alert('你摇动了手机');
+        }
+        lastX = x; lastY = y; lastZ = z;
+      }
+    }
+    if (window.DeviceMotionEvent) {
+      window.addEventListener('devicemotion', motionHandler, false);
+    } else {
+      alert('您的设备不支持位置感应');
+    }
+  </script>
+</body>
+</html>

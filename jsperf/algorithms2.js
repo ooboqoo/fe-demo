@@ -1,11 +1,11 @@
 
-
 // 最少硬币找零问题 - 动态规划
 let makeChange = (function () {
-  let cache = {}, coins = [1, 3, 4]
-  coins.forEach(function(item) { cache[item] = [item] })
+  let cache = {}
+  let coins = [1, 3, 4]
+  coins.forEach(function (item) { cache[item] = [item] })
 
-  return function makeChange(amount) {
+  return function makeChange (amount) {
     if (!amount) { return [] }
     if (cache[amount]) { return cache[amount] }
     let min = []
@@ -19,13 +19,15 @@ let makeChange = (function () {
         console.log('new Min ' + min + ' for ' + amount)
       }
     }
-    return cache[amount] = min
+    cache[amount] = min
+    return min
   }
 })()
 
 // 最少硬币找零问题 - 贪心算法
-function minCoinChange(amount, coins = [1, 3, 4]) {
-  let change = [], total = 0
+function minCoinChange (amount, coins = [1, 3, 4]) {
+  let change = []
+  let total = 0
   for (let i = coins.length; i--;) {
     while (total + coins[i] <= amount) {
       change.push(coins[i])
@@ -35,8 +37,8 @@ function minCoinChange(amount, coins = [1, 3, 4]) {
   return change
 }
 
-// 正常市面上的币值 1, 2, 5, 10, 20, 50, 100 贪心算法得到的也永远是最优解 
+// 正常市面上的币值 1, 2, 5, 10, 20, 50, 100 贪心算法得到的也永远是最优解
 for (let i = 20; i--;) {
-  console.log('动态规划', makeChange(i))     // [3, 3]
-  console.log('贪心算法', minCoinChange(i))  // [4, 1, 1]
+  console.log('动态规划', makeChange(i)) // [3, 3]
+  console.log('贪心算法', minCoinChange(i)) // [4, 1, 1]
 }

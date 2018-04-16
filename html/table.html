@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Table Layout</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    th, .th {
+      border: 1px solid red;
+    }
+
+    td, .td {
+      border: 1px solid gray;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <table style="table-layout: fixed; width:100px">
+    <tr>
+      <th style="width: 100px;">Firstname</th>
+      <th style="width: 200px;">Lastname</th>
+      <th>Age</th>
+    </tr>
+    <tr>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>Eve</td>
+      <td>Jackson<br>dfsdf<br>fdffd</td>
+      <td>94</td>
+    </tr>
+  </table>
+
+  <div class="table" style="display: table; table-layout: fixed; width: 200px">
+    <div class="tr" style="display: table-row">
+      <div class="td" style="display: table-cell; width: 100px;">A</div>
+      <div class="td" style="display: table-cell; width: 200px;">B</div>
+      <div class="td" style="display: table-cell;">C</div>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -72,4 +72,3 @@ str = `
   <iframe id="html" frameborder="0" width="100%" scrolling="no"></iframe>
 </body>
 `
-

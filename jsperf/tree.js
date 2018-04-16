@@ -1,7 +1,7 @@
 const root = Symbol('root')
 
 class Node {
-  constructor(key) {
+  constructor (key) {
     this.key = key
     this.left = null
     this.right = null
@@ -9,32 +9,28 @@ class Node {
 }
 
 class BinarySearchTree {
-
-  constructor() { this[root] = null }
+  constructor () { this[root] = null }
 
   // 插入节点
-  insert(key) {
+  insert (key) {
     const newNode = new Node(key)
-    if (this[root] === null) { this[root] = newNode }
-    else { insertNode(this[root], newNode) }
+    if (this[root] === null) { this[root] = newNode } else { insertNode(this[root], newNode) }
     return this
 
-    function insertNode(node, newNode) {
+    function insertNode (node, newNode) {
       if (newNode.key < node.key) {
-        if (node.left === null) { node.left = newNode }
-        else { insertNode(node.left, newNode) }
+        if (node.left === null) { node.left = newNode } else { insertNode(node.left, newNode) }
       } else {
-        if (node.right === null) { node.right = newNode }
-        else { insertNode(node.right, newNode) }
+        if (node.right === null) { node.right = newNode } else { insertNode(node.right, newNode) }
       }
     }
   }
 
   // 中序遍历
-  inOrderTraverse(callback) {
+  inOrderTraverse (callback) {
     inOrderTraverseNode(this[root], callback)
 
-    function inOrderTraverseNode(node, callback) {
+    function inOrderTraverseNode (node, callback) {
       if (node === null) { return }
       inOrderTraverseNode(node.left, callback)
       callback(node.key)
@@ -43,10 +39,10 @@ class BinarySearchTree {
   }
 
   // 先序遍历
-  preOrderTraverse(callback) {
+  preOrderTraverse (callback) {
     preOrderTraverseNode(this[root], callback)
 
-    function preOrderTraverseNode(node, callback) {
+    function preOrderTraverseNode (node, callback) {
       if (node === null) { return }
       callback(node.key)
       preOrderTraverseNode(node.left, callback)
@@ -55,10 +51,10 @@ class BinarySearchTree {
   }
 
   // 后序遍历
-  postOrderTraverse(callback) {
+  postOrderTraverse (callback) {
     postOrderTraverseNode(this[root], callback)
 
-    function postOrderTraverseNode(node, callback) {
+    function postOrderTraverseNode (node, callback) {
       if (node === null) { return }
       postOrderTraverseNode(node.left, callback)
       postOrderTraverseNode(node.right, callback)
@@ -67,7 +63,7 @@ class BinarySearchTree {
   }
 
   // 查找最小值
-  min() {
+  min () {
     if (!this[root]) { return null }
     let node = this[root]
     while (node && node.left !== null) { node = node.left }
@@ -75,7 +71,7 @@ class BinarySearchTree {
   }
 
   // 查找最大值
-  max() {
+  max () {
     if (!this[root]) { return null }
     let node = this[root]
     while (node && node.right !== null) { node = node.right }
@@ -83,25 +79,22 @@ class BinarySearchTree {
   }
 
   // 搜索特定值
-  search(key) {
+  search (key) {
     return searchNode(this[root], key)
 
-    function searchNode(node, key) {
+    function searchNode (node, key) {
       if (node === null) { return false }
-      if (key < node.key) { return searchNode(node.left, key) }
-      else if (key > node.key) { return searchNode(node.right, key) }
-      else { return true }
+      if (key < node.key) { return searchNode(node.left, key) } else if (key > node.key) { return searchNode(node.right, key) } else { return true }
     }
   }
 
   // 删除特定值
-  delete(key) {
+  delete (key) {
     this[root] = deleteNode(this[root], key)
 
-    function deleteNode(node, key) {
+    function deleteNode (node, key) {
       if (node === null) { return null }
-      if (key < node.key) { node.left = deleteNode(node.left, key); return node }
-      else if (key > node.key) { node.right = deleteNode(node.right, key); return node }
+      if (key < node.key) { node.left = deleteNode(node.left, key); return node } else if (key > node.key) { node.right = deleteNode(node.right, key); return node }
 
       // key === node.key && 节点为外节点
       if (node.left === null && node.right === null) { return node = null }
@@ -115,7 +108,7 @@ class BinarySearchTree {
       return node
     }
 
-    function findMinNode(node){
+    function findMinNode (node) {
       while (node.left !== null) { node = node.left }
       return node
     }
@@ -124,10 +117,10 @@ class BinarySearchTree {
 
 module.exports = { BinarySearchTree }
 
-
 // 对基本功能进行测试
-function runTest() {
-  let tree = new BinarySearchTree(), result = []
+function runTest () {
+  let tree = new BinarySearchTree()
+  let result = []
   for (let i of [11, 7, 5, 3, 6, 9, 8, 10, 15, 13, 12, 14, 20, 18, 25]) { tree.insert(i) }
   tree.inOrderTraverse(key => result.push(key))
   console.log('inOrderTraverse', result)
