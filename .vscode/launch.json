@@ -7,9 +7,18 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Current File",
+      "name": "Node.js",
       "program": "${file}",
       "cwd": "${cwd}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Node.js ESM",
+      "program": "${file}",
+      "runtimeArgs": [
+        "--experimental-modules"
+      ]
     },
     {
       "type": "node",
