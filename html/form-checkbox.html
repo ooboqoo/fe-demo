@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1.0, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Form Demo</title>
+</head>
+
+<!--
+  修改原生实现，将复选框的值绑定到一个数组
+-->
+
+<body>
+  <form action="">
+    <label><input type="radio" name="sex" value="Male" checked> Male</label>
+    <label><input type="radio" name="sex" value="Female"> Female</label>
+    <label><input type="checkbox" name="vehicle" value="Bike"> I have a bike</label>
+    <label><input type="checkbox" name="vehicle" value="Car" checked="checked"> I have a car</label>
+    <button type="button" onclick="logInfo()">Log Info</button>
+  </form>
+  <script>
+    var sex = 'Male';
+    var vehicle = ['Car'];
+
+    var form = document.querySelector('form');
+    form.addEventListener('change', function (event) {
+      event.preventDefault();
+      var target = event.target;
+      if (target.type === 'checkbox') {
+        var name = window[target.name];
+        if (target.checked) {
+          name.push(target.value);
+        } else {
+          name.splice(name.indexOf(target.value), 1);
+        }
+      } else if (target.type === 'radio') {
+        window[target.name] = target.value;
+      }
+    })
+
+    function logInfo() {
+      console.log({sex, vehicle});
+    }
+  </script>
+</body>
+
+</html>

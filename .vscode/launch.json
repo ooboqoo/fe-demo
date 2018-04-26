@@ -8,8 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Node.js",
-      "program": "${file}",
-      "cwd": "${cwd}"
+      "program": "${file}"
     },
     {
       "type": "node",

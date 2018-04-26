@@ -1,3 +1,4 @@
 module.exports = {
-    "extends": "standard"
+  "root": true,
+  "extends": "standard"
 };
