@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+  <script>
+const db = new Dexie("FriendDatabase")
+
+db.version(1).stores({
+  friends: "++id,name,age",
+  lessons: 'id',
+})
+
+db.transaction('rw', db.friends, async () => {
+  if ((await db.friends.where('name').equals('Josephine').count()) === 0) {
+    let id = await db.friends.add({name: "Josephine", age: 21})
+    alert (`Addded friend with id ${id}`)
+  }
+  let youngFriends = await db.friends.where('age').below(25).toArray()
+  alert ('My young friends: ' + JSON.stringify(youngFriends))
+}).catch(e => { alert(e.stack || e) })
+  </script>
+ </head>
+</html>
